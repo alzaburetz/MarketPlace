@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d"
+            BarBackgroundColor="White"
+            BarTextColor="Black"
+            SelectedTabColor="#F02941"
+            UnselectedTabColor="#666666"
+            xmlns:views="clr-namespace:MarketPlace.Views"
+            x:Class="MarketPlace.Views.MainPage">
+
+    <TabbedPage.Children>
+        <NavigationPage IconImageSource="menu_home">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage IconImageSource="menu_heart">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage IconImageSource="menu_cart">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage IconImageSource="menu_chat">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage IconImageSource="menu_profile">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+    
+</TabbedPage>
