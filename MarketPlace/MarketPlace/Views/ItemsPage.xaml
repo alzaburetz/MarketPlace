@@ -9,8 +9,12 @@
              xmlns:controls="clr-namespace:MarketPlace.Controls"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
+    
 
     <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <SearchBar/>
+        </StackLayout>
         <controls:CustomButton Text="Test" 
                                Margin="30" 
                                FontSize="Large"
