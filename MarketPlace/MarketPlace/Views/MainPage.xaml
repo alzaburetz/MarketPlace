@@ -9,12 +9,13 @@
             SelectedTabColor="#F02941"
             UnselectedTabColor="#666666"
             xmlns:views="clr-namespace:MarketPlace.Views"
+            xmlns:badge="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"
             x:Class="MarketPlace.Views.MainPage">
 
     <TabbedPage.Children>
         <NavigationPage IconImageSource="menu_home">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:CatalogPage />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage IconImageSource="menu_heart">
