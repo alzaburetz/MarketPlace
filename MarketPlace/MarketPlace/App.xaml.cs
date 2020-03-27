@@ -15,6 +15,15 @@ namespace MarketPlace
 
             DependencyService.Register<MockDataStore>();
             MainPage = new MainPage();
+            return;
+            try
+            {
+                var token = Application.Current.Properties["Token"];
+            }
+            catch
+            {
+                MainPage = new StartPage();
+            }
         }
 
         protected override void OnStart()
