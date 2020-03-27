@@ -20,22 +20,22 @@
         </NavigationPage>
         <NavigationPage IconImageSource="menu_heart">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:FavoritePage />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage IconImageSource="menu_cart">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:CartPage />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage IconImageSource="menu_chat">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:ChatPage />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage IconImageSource="menu_profile">
             <x:Arguments>
-                <views:ItemsPage />
+                <views:ProfilePage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>
