@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:MarketPlace.Controls"
+             x:Class="MarketPlace.Views.StartPage">
+    <ContentPage.Content>
+        <StackLayout Padding="50,0,50,20"
+                     BackgroundColor="White"
+                     VerticalOptions="FillAndExpand">
+            <Image Source="logo"
+                   Margin="50, 100, 50, 50"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"/>
+            <Label Text="МаркетПлейс любых товаров"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"
+                   Margin="50"/>
+            <Label Text="Сопроводительный текст в две строки"
+                   Margin="50,0,50,0"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center"/>
+            <StackLayout VerticalOptions="FillAndExpand"/>
+            <controls:CustomButton Text="Далее"
+                                   Clicked="Continue"
+                                   FontSize="Large"
+                                   VerticalOptions="End"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
