@@ -10,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace MarketPlace.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CatalogPage : ContentPage
+    public partial class ProfilePage : ContentPage
     {
-        public CatalogPage()
+        public ProfilePage()
         {
             InitializeComponent();
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new StackPage());
         }
     }
 }

@@ -4,13 +4,31 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             NavigationPage.HasBackButton="True"
-             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="True"
+             xmlns:controls="clr-namespace:MarketPlace.Controls"
              x:Class="MarketPlace.Views.CatalogPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="camera"/>
+    </ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal"
+                     Padding="0,5,0,5"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <controls:CustomSearchBarEntry ClearButtonVisibility="WhileEditing"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           IsTextPredictionEnabled="True"
+                                           IsSpellCheckEnabled="True"
+                                           VerticalOptions="FillAndExpand"
+                                           HorizontalOptions="FillAndExpand">
+            </controls:CustomSearchBarEntry>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <SearchBar/>
-            <CollectionView HeightRequest="200">
+        <StackLayout BackgroundColor="White">
+            <CollectionView HeightRequest="200"
+                            BackgroundColor="White">
                 <CollectionView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>mono</x:String>
@@ -38,6 +56,16 @@
                                        SnapPointsType="MandatorySingle"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
+            <ScrollView>
+                <StackLayout BackgroundColor="White">
+                    <Label Text="Каталог товаров"
+                           HorizontalTextAlignment="Center"/>
+                    <Button Style="{StaticResource SecondaryButton}"
+                            Text="Test"
+                            Clicked="Button_Clicked"/>
+                    <StackLayout/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
