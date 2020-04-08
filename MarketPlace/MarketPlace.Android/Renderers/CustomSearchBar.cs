@@ -40,7 +40,10 @@ namespace MarketPlace.Droid.Renderers
                         Xamarin.Forms.Color.FromHex("#EBEAEA").ToAndroid(),
                         Xamarin.Forms.Color.FromHex("#EBEAEA").ToAndroid()
                     });
-                background.SetCornerRadius(90);
+                var height = Control.Height;
+                background.SetCornerRadius(10);
+                background.SetStroke(3, Android.Content.Res.ColorStateList.ValueOf(Xamarin.Forms.Color.FromHex("#CDCDCD").ToAndroid()));
+                Control.SetPadding(40, 20, 40, 20);
                 Control.Background = background;
             }
         }
