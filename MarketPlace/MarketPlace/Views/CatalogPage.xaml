@@ -8,7 +8,8 @@
              xmlns:controls="clr-namespace:MarketPlace.Controls"
              x:Class="MarketPlace.Views.CatalogPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="camera"/>
+        <ToolbarItem IconImageSource="camera"
+                     Clicked="OpenScanner"/>
     </ContentPage.ToolbarItems>
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal"
@@ -20,6 +21,7 @@
                                            HorizontalTextAlignment="Center"
                                            IsTextPredictionEnabled="True"
                                            IsSpellCheckEnabled="True"
+                                           FontSize="Small"
                                            VerticalOptions="FillAndExpand"
                                            HorizontalOptions="FillAndExpand">
             </controls:CustomSearchBarEntry>
@@ -60,10 +62,17 @@
                 <StackLayout BackgroundColor="White">
                     <Label Text="Каталог товаров"
                            HorizontalTextAlignment="Center"/>
-                    <Button Style="{StaticResource SecondaryButton}"
-                            Text="Test"
-                            Clicked="Button_Clicked"/>
-                    <StackLayout/>
+                    <Frame CornerRadius="15"
+                           BorderColor="#A8A9A9"
+                           BackgroundColor="#F4F4F6">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*"/>
+                                <RowDefinition Height="0.2*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </Frame>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
