@@ -16,5 +16,10 @@ namespace MarketPlace.Views
         {
             InitializeComponent();
         }
+
+        protected async void Continue(object sender, EventArgs args)
+        {
+            await Navigation.PushModalAsync(new LocationFinder());
+        }
     }
 }
