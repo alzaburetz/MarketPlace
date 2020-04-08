@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:MarketPlace.Controls"
+             x:Class="MarketPlace.Views.LocationFinder">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <Image Source="locator"
+                   Aspect="AspectFit"
+                   Margin="80"/>
+            <StackLayout Grid.Row="1"
+                         Spacing="20">
+                <Label Text="Уточняем ваш город"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       FontSize="Large"/>
+                <Label Text="Разрешите доступ к геопозиции"
+                       Margin="0,-20,0,0"/>
+                <controls:CustomButton Text="Далее"
+                                       Clicked="Continue"
+                                       Margin="40,0,40,0"/>
+                <Button Style="{StaticResource SecondaryButton}"
+                        Margin="50,0,50,0"
+                        Clicked="OpenMainApp"
+                        Text="Пропустить"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
