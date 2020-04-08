@@ -5,17 +5,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:MarketPlace.Controls"
+             xmlns:behaviors="clr-namespace:MarketPlace.Behaviors"
              x:Class="MarketPlace.Views.AuthorizationPage">
     <ContentPage.Content>
-        <StackLayout Padding="50,50,50,20"
-                     BackgroundColor="White">
-            <Label Text="Авторизация по телефону или по почте"
+        <Grid BackgroundColor="White"
+              Padding="50,50,50,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.45*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.45*"/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <Label Text="Авторизация по телефону или по почте"
                    FontSize="Medium"
                    TextColor="Black"
                    FontAttributes="Bold"
                    HorizontalOptions="FillAndExpand"
                    HorizontalTextAlignment="Center"/>
-            <controls:CustomEntry/>
-        </StackLayout>
+                <Label Text="Введите номер телефона"
+                   FontSize="Large"
+                   HorizontalTextAlignment="Center"
+                   TextColor="Gray"/>
+                <controls:CustomEntry
+                                  Keyboard="Telephone"
+                                  FontSize="35"
+                                  HorizontalTextAlignment="Center"
+                                  VerticalTextAlignment="Center">
+                    <controls:CustomEntry.Behaviors>
+                        <behaviors:MaskedBehavior Mask="+7 XXX XXX XX XX"/>
+                    </controls:CustomEntry.Behaviors>
+                </controls:CustomEntry>
+                <controls:CustomButton Text="Получить SMS"
+                                   FontSize="Large"/>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+
+                <Label Text="Новый пользователь"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Center"/>
+                <controls:FilledEntry Background="#F4F4F4"
+                                      Keyboard="Email"
+                                      HorizontalTextAlignment="Center"
+                                  Placeholder="Почта"/>
+                <controls:FilledEntry Background="#F4F4F4"
+                                      IsPassword="True"
+                                  Placeholder="Придумайте пароль"/>
+                <controls:CustomButton Text="Далее"
+                                       Clicked="Continue"
+                                       VerticalOptions="End"
+                                       Margin="0,40,0,0"
+                                       FontSize="Large"/>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
