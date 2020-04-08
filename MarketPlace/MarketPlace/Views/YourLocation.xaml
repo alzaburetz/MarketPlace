@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:MarketPlace.Controls"
+             x:Class="MarketPlace.Views.YourLocation">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.45*"/>
+                <RowDefinition Height="0.55*"/>
+            </Grid.RowDefinitions>
+            <Frame BackgroundColor="#F1F1F1"
+                  Margin="0,40,0,0"
+                  Padding="40"
+                  HasShadow="False"
+                  CornerRadius="15">
+                <StackLayout VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    <Label Text="Ваш город"/>
+                    <Label Text="Владимир"
+                           FontSize="Large"/>
+                    <Label Text="Верно?"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Grid.Row="1">
+                <controls:CustomButton Text="Ввести вручную"
+                                       Clicked="FocusField"/>
+                <Entry VerticalOptions="FillAndExpand"
+                       x:Name="Town"
+                       FontSize="Header"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"/>
+                <controls:CustomButton Text="Далее"
+                                       Clicked="OpenMainApp"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
