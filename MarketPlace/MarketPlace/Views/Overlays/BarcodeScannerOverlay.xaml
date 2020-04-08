@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MarketPlace.Views.Overlays.BarcodeScannerOverlay">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="Opacity" Value="0.4"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <Grid BackgroundColor="Transparent"
+              RowSpacing="0"
+              ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <BoxView Grid.ColumnSpan="3"/>
+            <BoxView Grid.Row="1"
+                     Grid.Column="0"/>
+            <BoxView Grid.Row="1"
+                     Grid.Column="2"/>
+            <BoxView Grid.ColumnSpan="3"
+                     Grid.Row="2"/>
+            <Frame BorderColor="Red"
+                   BackgroundColor="Transparent"
+                   Grid.Column="1"
+                   Grid.Row="1"/>
+            <Label Text="Отменить"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="2"
+                   TextColor="White"
+                   FontSize="Medium"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+  </ContentView.Content>
+</ContentView>
