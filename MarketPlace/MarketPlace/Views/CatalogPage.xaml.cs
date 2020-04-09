@@ -37,5 +37,10 @@ namespace MarketPlace.Views
 
             await Navigation.PushModalAsync(scanner);
         }
+
+        private async void GoToCategory(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CategoryPage());
+        }
     }
 }
