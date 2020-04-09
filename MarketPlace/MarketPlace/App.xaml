@@ -9,6 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
+            <Color x:Key="DarkGrey">#A8A9A9</Color>
             <Color x:Key="NavigationPrimary">White</Color>
             <Color x:Key="MainColor">#D83831</Color>
             <Color x:Key="SecondaryColor">#EC4257</Color>
