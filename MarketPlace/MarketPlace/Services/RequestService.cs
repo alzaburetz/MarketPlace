@@ -25,7 +25,7 @@ namespace MarketPlace.Services
         public RequestService()
         {
             client = new HttpClient();
-            client.BaseAddress = new System.Uri("https://sharing-byteteam.ru");
+            client.BaseAddress = new System.Uri("https://market-byteteam.ru");
             SerializerSettings = new JsonSerializerSettings()
             {
                 MissingMemberHandling = MissingMemberHandling.Ignore,
