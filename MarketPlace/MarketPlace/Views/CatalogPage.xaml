@@ -58,69 +58,64 @@
                                        SnapPointsType="MandatorySingle"/>
                 </CollectionView.ItemsLayout>
             </CollectionView>
-            <ScrollView>
-                <StackLayout BackgroundColor="White"
+            <StackLayout BackgroundColor="White"
                              Padding="10">
-                    <Label Text="Каталог товаров"
+                <Label Text="Каталог товаров"
                            HorizontalTextAlignment="Center"/>
-                    <Frame CornerRadius="15"
+                <CollectionView ItemsSource="{Binding Categories}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="20"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="15"
                            BorderColor="#A8A9A9"
                            BackgroundColor="#F4F4F6">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="80"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="80"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.ColumnSpan="2"
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.ColumnSpan="2"
                                    FontAttributes="Bold"
                                    TextColor="Black"
                                    FontSize="Medium"
-                                   Text="Главная категория"/>
-                            <Image BackgroundColor="Red"
+                                   Text="{Binding Name}"/>
+                                    <Image Source="{Binding Image}"
                                    Grid.Column="1"
                                    Grid.Row="1"
                                    />
 
-                            <StackLayout Grid.ColumnSpan="1"
+                                    <StackLayout Grid.ColumnSpan="1"
+                                         BindableLayout.ItemsSource="{Binding Subcategories}"
                                          Grid.Row="1"
                                          Grid.RowSpan="2">
-                                <BindableLayout.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщапоzXcZXcZXcZXcZXCZXcZXCxcbvxvbnxcvnxvcbnjвщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-                                        <x:String>вщаповщпашо</x:String>
-
-                                    </x:Array>
-                                </BindableLayout.ItemsSource>
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label Text="{Binding}"
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Text="{Binding Name}"
                                                FontAttributes="None"
                                                Margin="0">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Tapped="GoToCategory"/>
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </Grid>
-                    </Frame>
-                </StackLayout>
-            </ScrollView>
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="GoToCategory"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

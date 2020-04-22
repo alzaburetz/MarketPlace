@@ -14,11 +14,13 @@ namespace MarketPlace
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<Services.RequestService>();
             MainPage = new MainPage();
             return;
             try
             {
                 var token = Application.Current.Properties["Token"];
+                MainPage = new MainPage();
             }
             catch
             {

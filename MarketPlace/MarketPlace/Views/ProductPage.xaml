@@ -18,14 +18,21 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <!--Добавить карусель с фотками-->
+                <CarouselView ItemsSource="{Binding Product.Images}"
+                              HeightRequest="300">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding URL}"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
                 <StackLayout Padding="30,0,30,20">
-                    <Label Text="Холодильник Розовый M5452 RUS"
+                    <Label Text="{Binding Product.Name}"
                            FontAttributes="Bold"
                            TextColor="Black"
                            FontSize="Large"/>
-                    <Label d:Text="LG GA-B509SQKL – вместительный холодильник с нижней морозильной камерой. В нём можно хранить большой запас продуктов, а благо"/>
-                    <Label d:Text="123 039P"
+                    <Label Text="{Binding Product.Description}"/>
+                    <Label Text="{Binding Product.Price, StringFormat='{0}₽'}"
                            FontSize="Large"
                            FontAttributes="Bold"
                            TextColor="Black"/>
@@ -33,9 +40,10 @@
                 <Label Text="Описание"
                        Style="{StaticResource Section}"/>
                 <StackLayout Padding="30,0,30,10">
-                    <Label d:Text="LG GA-B509SQKL – вместительный холодильник с нижней морозильной камерой. В нём можно хранить большой запас продуктов, а благодаря стильному дизайну он станет настоящим украшением кухни. Для тех, кто не представляет обед или ужин без вина, предусмотрена полка для хранения бутылок с благородным напитком."/>
-                    
+                    <Label Text="{Binding Product.Description}"/>
+
                     <Button Style="{StaticResource SecondaryButton}"
+                            FontSize="Medium"
                             Scale="0.5"
                             Text="Полное описание"/>
                 </StackLayout>
@@ -43,6 +51,7 @@
                        Style="{StaticResource Section}"/>
                 <StackLayout Padding="30,0,30,10">
                     <Button Style="{StaticResource SecondaryButton}"
+                            FontSize="Medium"
                             Scale="0.5"
                             Text="Полное описание"/>
                 </StackLayout>

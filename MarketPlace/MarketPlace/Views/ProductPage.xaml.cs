@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using MarketPlace.ViewModels;
+using MarketPlace.Models;
+
 namespace MarketPlace.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +18,11 @@ namespace MarketPlace.Views
         public ProductPage()
         {
             InitializeComponent();
+        }
+
+        public ProductPage(Product product):this()
+        {
+            BindingContext = new ProductViewModel(product);
         }
     }
 }
