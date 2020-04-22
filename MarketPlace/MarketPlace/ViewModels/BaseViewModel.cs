@@ -13,6 +13,7 @@ namespace MarketPlace.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public RequestService Http => DependencyService.Get<RequestService>();
 
         bool isBusy = false;
         public bool IsBusy
