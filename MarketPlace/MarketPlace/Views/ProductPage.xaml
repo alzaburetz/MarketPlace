@@ -8,6 +8,7 @@
              x:Class="MarketPlace.Views.ProductPage">
     <ContentPage.Resources>
         <ResourceDictionary>
+            
             <Style TargetType="Label" x:Key="Section">
                 <Setter Property="BackgroundColor" Value="#DADADA"/>
                 <Setter Property="Padding" Value="30,5,0,5"/>
