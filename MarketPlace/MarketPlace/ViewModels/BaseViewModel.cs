@@ -8,12 +8,17 @@ using Xamarin.Forms;
 using MarketPlace.Models;
 using MarketPlace.Services;
 
+
+using System.Threading.Tasks;
+
 namespace MarketPlace.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public RequestService Http => DependencyService.Get<RequestService>();
+        public DataBaseService Database => DependencyService.Get<DataBaseService>();
+        
 
         bool isBusy = false;
         public bool IsBusy
