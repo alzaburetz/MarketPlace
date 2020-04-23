@@ -49,6 +49,7 @@ namespace MarketPlace.Views
 
         private async void GoToCategory(object sender, EventArgs e)
         {
+
             var id = viewModel.Cats.Find(x => x.Name == (sender as Label).Text).ID;
             await Navigation.PushAsync(new CategoryPage(id));
         }
