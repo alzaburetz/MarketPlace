@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 
 using MarketPlace.Models;
+using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace MarketPlace.ViewModels
 {
     public class ProductViewModel:BaseViewModel
     {
         Product product;
+        public Command Favorite { get; set; }
+        public Command AddToCart { get; set; }
         public Product Product
         {
             get => product;
@@ -19,9 +23,38 @@ namespace MarketPlace.ViewModels
             }
         }
 
-        public ProductViewModel(Product prod)
+        public ProductViewModel(Product product)
         {
-            Product = prod;
+            Product = product;
+            Favorite = new Command<Product>((prod) =>
+            {
+                prod.Favorited = !prod.Favorited;
+                if (prod.Favorited)
+                    Task.Run(() =>
+                    {
+                        Database.WriteItem<Product>("Favorite", prod);
+                    });
+                else
+                    Task.Run(() =>
+                    {
+                        Database.RemoveItem<Product>("Favorite", LiteDB.Query.Where("_id", x => x.AsInt32 == prod.ID));
+                    });
+            });
+
+            AddToCart = new Command<Product>(async (prod) =>
+            {
+                var cart_item = await Database.GetItemAsync<CartItem>("Cart", LiteDB.Query.Where("_id", x => x.AsInt32 == prod.ID));
+                if (cart_item != null)
+                {
+                    cart_item.Count++;
+                    Database.UpdateItem<CartItem>("Cart", null, cart_item);
+                }
+                else
+                {
+                    var item = new CartItem(prod);
+                    Database.WriteItem<CartItem>("Cart", item);
+                }
+            });
         }
     }
 }
