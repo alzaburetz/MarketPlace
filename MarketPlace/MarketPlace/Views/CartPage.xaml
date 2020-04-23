@@ -6,10 +6,19 @@
              mc:Ignorable="d"
              x:Class="MarketPlace.Views.CartPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <CollectionView ItemsSource="{Binding CartItems}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <StackLayout>
+                                <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding Count}" TextColor="Red"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
