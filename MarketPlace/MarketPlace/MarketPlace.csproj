@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+    <PackageReference Include="LiteDB" Version="4.1.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Plugin.Badge" Version="2.2.1" />
     <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
@@ -19,7 +20,7 @@
     <PackageReference Include="SkiaSharp" Version="1.68.1.1" />
     <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF" Version="1.0.2" />
     <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF.EXT" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
@@ -47,6 +48,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Overlays\BarcodeScannerOverlay.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Overlays\LoadingIndicator.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProductPage.xaml">
