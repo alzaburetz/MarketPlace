@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:converters="clr-namespace:MarketPlace.Converters"
              xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              x:Class="MarketPlace.Views.ProductPage">
     <ContentPage.Resources>
@@ -14,29 +15,58 @@
                 <Setter Property="Padding" Value="30,5,0,5"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
+            <converters:FavoriteIconConverter x:Key="Favorite"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <CarouselView ItemsSource="{Binding Product.Images}"
-                              HeightRequest="300">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding URL}"/>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
+                <Grid HeightRequest="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="0.9*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.9*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CarouselView ItemsSource="{Binding Product.Images}"
+                                   Grid.RowSpan="2"
+                                   Grid.ColumnSpan="2">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding URL}"/>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <ImageButton Source="{Binding Product.Favorited,Converter={StaticResource Favorite}}"
+                                 Grid.Column="1"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 Command="{Binding Favorite}"
+                                 CommandParameter="{Binding Product}"/>
+                </Grid>
                 <StackLayout Padding="30,0,30,20">
                     <Label Text="{Binding Product.Name}"
                            FontAttributes="Bold"
                            TextColor="Black"
                            FontSize="Large"/>
                     <Label Text="{Binding Product.Description}"/>
-                    <Label Text="{Binding Product.Price, StringFormat='{0}₽'}"
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Fill">
+                        <Label Text="{Binding Product.Price, StringFormat='{0}₽'}"
+                               d:Text="3333R"
                            FontSize="Large"
+                               HorizontalOptions="FillAndExpand"
                            FontAttributes="Bold"
                            TextColor="Black"/>
+                        <ImageButton Source="addtocart"
+                                     VerticalOptions="End"
+                                     Aspect="AspectFit"
+                                     Command="{Binding AddToCart}"
+                                     CommandParameter="{Binding Product}"/>
+                    </StackLayout>
                 </StackLayout>
                 <Label Text="Описание"
                        Style="{StaticResource Section}"/>
