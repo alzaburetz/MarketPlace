@@ -8,6 +8,7 @@
              x:Class="MarketPlace.Views.CategoryPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
+            
             <CollectionView ItemsSource="{Binding Products}"
                             SelectionMode="Single"
                             SelectionChanged="CollectionView_SelectionChanged">
