@@ -15,6 +15,21 @@ namespace MarketPlace.Views
         public MainPage()
         {
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);        }
+            On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);        
+        }
+
+        protected override void OnCurrentPageChanged()
+        {
+            base.OnCurrentPageChanged();
+            var i = this.Children.IndexOf(this.CurrentPage);
+            switch (i)
+            {
+                case 0: break;
+                case 1: MessagingCenter.Send<MainPage>(this, "LoadFavorite");
+                    break;
+                case 2: MessagingCenter.Send<MainPage>(this, "LoadCart");
+                    break;
+            }
+        }
     }
 }
