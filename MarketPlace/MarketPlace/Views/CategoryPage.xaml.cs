@@ -27,11 +27,6 @@ namespace MarketPlace.Views
             base.OnAppearing();
         }
 
-        private async void GoToProduct(object sender, EventArgs args)
-        {
-            
-        }
-
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -41,7 +36,7 @@ namespace MarketPlace.Views
                 await Navigation.PushAsync(new ProductPage(product));
                 (sender as CollectionView).SelectedItem = null;
             }
-            catch (Exception ex)
+            catch
             {
 
             }
