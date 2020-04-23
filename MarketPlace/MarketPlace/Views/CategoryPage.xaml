@@ -4,8 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:converters="clr-namespace:MarketPlace.Converters"
              xmlns:rating="clr-namespace:SkiaRate;assembly=SkiaRate.Forms"
+             x:Name="Category"
              x:Class="MarketPlace.Views.CategoryPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FavoriteIconConverter x:Key="Favorite"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10">
             
@@ -67,9 +74,11 @@
                             Grid.ColumnSpan="2"
                             Text="Получить предложение"
                             FontSize="Small"/>
-                                <ImageButton Source="favorite" 
+                                <ImageButton Source="{Binding Favorited, Converter={StaticResource Favorite}}" 
+                                             Command="{Binding Path=BindingContext.Favorite, Source={x:Reference Category}}"
+                                             CommandParameter="{Binding }"
                                  BackgroundColor="Transparent"
-                                 Scale="1.5"
+                                 Scale="1"
                                  Grid.Column="3"
                                  Grid.Row="0"/>
                             </Grid>
