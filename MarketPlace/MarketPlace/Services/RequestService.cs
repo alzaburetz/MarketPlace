@@ -41,7 +41,7 @@ namespace MarketPlace.Services
                 Token = Application.Current.Properties["Token"].ToString();
             } catch
             {
-                Token = "";
+                Token = "MWqYxWtNxtJaZNfLsG2ND.FxyW4SuL.5D8d3ZCok1E9QazZD1aWzi";
             }
         }
         public async Task<string> GetResponse(string endpoint, bool token)
