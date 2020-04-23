@@ -34,6 +34,7 @@ namespace MarketPlace.Views
 
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             try
             {
                 var product = e.CurrentSelection[0] as MarketPlace.Models.Product;
