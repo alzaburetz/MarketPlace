@@ -16,6 +16,7 @@ namespace MarketPlace
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<Services.RequestService>();
             MainPage = new MainPage();
+
             return;
             try
             {
