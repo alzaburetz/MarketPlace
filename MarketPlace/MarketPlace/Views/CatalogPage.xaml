@@ -16,6 +16,7 @@
                      Padding="0,5,0,5"
                      HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand">
+            
             <controls:CustomSearchBarEntry ClearButtonVisibility="WhileEditing"
                                            VerticalTextAlignment="Center"
                                            HorizontalTextAlignment="Center"
