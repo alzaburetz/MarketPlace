@@ -22,6 +22,7 @@ namespace MarketPlace.Views
 
         public ProductPage(Product product):this()
         {
+
             BindingContext = new ProductViewModel(product);
         }
     }
