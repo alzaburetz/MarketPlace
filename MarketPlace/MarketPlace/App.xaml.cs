@@ -16,9 +16,6 @@ namespace MarketPlace
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<Services.RequestService>();
             DependencyService.Register<DataBaseService>();
-            MainPage = new MainPage();
-
-            return;
             try
             {
                 var token = Application.Current.Properties["Token"];
