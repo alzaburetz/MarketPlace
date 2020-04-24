@@ -4,12 +4,43 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:models="clr-namespace:MarketPlace.Models"
+             xmlns:views="clr-namespace:MarketPlace.Views.Elements"
              x:Class="MarketPlace.Views.ChatPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="0">
+            <CollectionView>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                        <x:String>dsfgdfgdfg</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <views:ChatElementView/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
