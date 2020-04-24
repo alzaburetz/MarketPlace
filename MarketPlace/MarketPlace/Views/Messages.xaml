@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:models="clr-namespace:MarketPlace.Models"
+             x:Class="MarketPlace.Views.Messages">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Frame CornerRadius="20"
+                   BorderColor="{StaticResource DarkGrey}"
+                   VerticalOptions="FillAndExpand"
+                   Padding="0"
+                   HorizontalOptions="FillAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.9*"/>
+                        <RowDefinition Height="0.1*"/>
+                    </Grid.RowDefinitions>
+                    <BoxView BackgroundColor="Red"/>
+                    <CollectionView ItemsSource="{Binding Messages}">
+                        <d:CollectionView.ItemsSource>
+                            <x:Array Type="{x:Type models:Message}">
+                                <models:Message Text="Test"/>
+                                <models:Message Text="Test"/>
+                                <models:Message Text="Test"/>
+                                <models:Message Text="Test"/>
+                                <models:Message Text="Test"/>
+                            </x:Array>
+                        </d:CollectionView.ItemsSource>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame>
+                                    <Label d:Text="{Binding Text}"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Frame CornerRadius="0"
+                           BorderColor="{StaticResource DarkGrey}"
+                           Grid.Row="1"
+                           Padding="0"
+                           BackgroundColor="White">
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.1*"/>
+                                <ColumnDefinition Width="0.8*"/>
+                                <ColumnDefinition Width="0.1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ImageButton BackgroundColor="Yellow"/>
+                            <Entry Keyboard="Text"
+                                   VerticalOptions="EndAndExpand"
+                                   HorizontalOptions="FillAndExpand"
+                                   Grid.Column="1"/>
+                            <ImageButton Source="sendmessage"
+                                         Grid.Column="2"
+                                         BackgroundColor="Blue"/>
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
