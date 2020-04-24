@@ -29,94 +29,102 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <CollectionView HeightRequest="200"
+        <Grid>
+            <StackLayout BackgroundColor="White">
+                <d:CollectionView HeightRequest="200"
                             BackgroundColor="White">
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>mono</x:String>
-                        <x:String>monodroid</x:String>
-                        <x:String>monotouch</x:String>
-                        <x:String>monorail</x:String>
-                        <x:String>monodevelop</x:String>
-                        <x:String>monotone</x:String>
-                        <x:String>monopoly</x:String>
-                        <x:String>monomodal</x:String>
-                        <x:String>mononucleosis</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame CornerRadius="20"
+                    <d:CollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>mono</x:String>
+                            <x:String>monodroid</x:String>
+                            <x:String>monotouch</x:String>
+                            <x:String>monorail</x:String>
+                            <x:String>monodevelop</x:String>
+                            <x:String>monotone</x:String>
+                            <x:String>monopoly</x:String>
+                            <x:String>monomodal</x:String>
+                            <x:String>mononucleosis</x:String>
+                        </x:Array>
+                    </d:CollectionView.ItemsSource>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="20"
                                WidthRequest="290"
                                BackgroundColor="Blue"/>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal"
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"
                                        ItemSpacing="10"
                                        SnapPointsAlignment="Center"
                                        SnapPointsType="MandatorySingle"/>
-                </CollectionView.ItemsLayout>
-            </CollectionView>
-            <StackLayout BackgroundColor="White"
-                             Padding="10">
-                <Label Text="Каталог товаров"
-                           HorizontalTextAlignment="Center"/>
-                <CollectionView ItemsSource="{Binding Categories}">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical"
-                                               ItemSpacing="20"/>
                     </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame CornerRadius="15"
+                </d:CollectionView>
+                <StackLayout BackgroundColor="White"
+                             Padding="10">
+                    <Label Text="Каталог товаров"
+                           HorizontalTextAlignment="Center"/>
+                    <CollectionView ItemsSource="{Binding Categories}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="20"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="15"
                            BorderColor="#A8A9A9"
                            BackgroundColor="#F4F4F6">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="80"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="80"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="80"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.ColumnSpan="2"
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="80"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.ColumnSpan="2"
                                    FontAttributes="Bold"
                                    TextColor="Black"
                                    FontSize="Medium"
                                    Text="{Binding Name}"/>
-                                    <Image Source="{Binding Image}"
+                                        <Image Source="{Binding Image}"
                                    Grid.Column="1"
                                    Grid.Row="1"
                                    />
 
-                                    <StackLayout Grid.ColumnSpan="1"
+                                        <StackLayout Grid.ColumnSpan="1"
                                          BindableLayout.ItemsSource="{Binding Subcategories}"
                                          Grid.Row="1"
                                          Grid.RowSpan="2">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <Label Text="{Binding Name}"
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Name}"
                                                FontAttributes="None"
                                                Margin="0">
-                                                    <Label.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="GoToCategory"/>
-                                                    </Label.GestureRecognizers>
-                                                </Label>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="GoToCategory"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+            <ActivityIndicator Color="{StaticResource MainColor}"
+                               Scale="0.2"
+                               IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               IsEnabled="{Binding IsBusy}"/>
+        </Grid>
+       
     </ContentPage.Content>
 </ContentPage>
