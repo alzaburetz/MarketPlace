@@ -5,6 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+using Xamarin.Forms;
+
 namespace MarketPlace.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -24,6 +26,9 @@ namespace MarketPlace.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+
+            Forms.SetFlags("CarouselView_Experimental");
+            Forms.SetFlags("SwipeView_Experimental");
 
             return base.FinishedLaunching(app, options);
         }
