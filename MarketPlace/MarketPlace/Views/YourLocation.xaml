@@ -39,7 +39,7 @@
                                        Clicked="FocusField"/>
                 <Entry VerticalOptions="FillAndExpand"
                        x:Name="Town"
-                       FontSize="Header"
+                       FontSize="Large"
                        VerticalTextAlignment="Center"
                        HorizontalTextAlignment="Center"/>
                 <controls:CustomButton Text="Далее"
