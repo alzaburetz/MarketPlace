@@ -11,9 +11,8 @@
         <Grid BackgroundColor="White"
               Padding="50,50,50,20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.45*"/>
-                <RowDefinition Height="0.1*"/>
-                <RowDefinition Height="0.45*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="0.4*"/>
             </Grid.RowDefinitions>
             <StackLayout>
                 <Label Text="Авторизация по телефону или по почте"
@@ -26,7 +25,7 @@
                    FontSize="Large"
                    HorizontalTextAlignment="Center"
                    TextColor="Gray"/>
-                <controls:CustomEntry
+                <controls:CustomEntry x:Name="Phone"
                                   Keyboard="Telephone"
                                   FontSize="35"
                                   HorizontalTextAlignment="Center"
@@ -36,11 +35,28 @@
                     </controls:CustomEntry.Behaviors>
                 </controls:CustomEntry>
                 <controls:CustomButton Text="Получить SMS"
+                                       Command="{Binding SendPhone}"
+                                       CommandParameter="{Binding Path=Text, Source={x:Reference Phone}}"
+                                   FontSize="Large"/>
+                <Entry x:Name="SMS"
+                       IsVisible="{Binding PhoneSent}"
+                       Placeholder="SMS"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Keyboard="Numeric">
+                    <Entry.Behaviors>
+                        <behaviors:MaskedBehavior Mask="XXXX"/>
+                    </Entry.Behaviors>
+                </Entry>
+                <controls:CustomButton Text="Отправить SMS"
+                                       IsEnabled="True"
+                                       IsVisible="{Binding PhoneSent}"
+                                       Command="{Binding SendSMS}"
+                                       CommandParameter="{Binding Path=Text, Source={x:Reference SMS}}"
                                    FontSize="Large"/>
             </StackLayout>
-            <StackLayout Grid.Row="2">
-
-                <Label Text="Новый пользователь"
+            <Grid Grid.Row="1">
+                <!--<Label Text="Новый пользователь"
                    FontSize="Medium"
                    TextColor="Black"
                    FontAttributes="Bold"
@@ -52,13 +68,18 @@
                                   Placeholder="Почта"/>
                 <controls:FilledEntry Background="#F4F4F4"
                                       IsPassword="True"
-                                  Placeholder="Придумайте пароль"/>
+                                  Placeholder="Придумайте пароль"/>-->
                 <controls:CustomButton Text="Далее"
-                                       Clicked="Continue"
+                                       IsVisible="{Binding SmsSent}"
                                        VerticalOptions="End"
+                                       Clicked="Continue"
                                        Margin="0,40,0,0"
                                        FontSize="Large"/>
-            </StackLayout>
+                <ActivityIndicator Color="{StaticResource MainColor}"
+                                   IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   IsEnabled="{Binding IsBusy}"/>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
