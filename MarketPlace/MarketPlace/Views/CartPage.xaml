@@ -6,19 +6,89 @@
              mc:Ignorable="d"
              x:Class="MarketPlace.Views.CartPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.9*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
             <CollectionView ItemsSource="{Binding CartItems}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
-                            <StackLayout>
-                                <Label Text="{Binding Name}"/>
-                                <Label Text="{Binding Count}" TextColor="Red"/>
-                            </StackLayout>
+                        <Frame CornerRadius="20"
+                               BorderColor="{StaticResource DarkGrey}"
+                               Padding="15">
+                            <Grid Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition Width="0.4*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Images[0].URL}"
+                                       Grid.RowSpan="3"
+                                       Aspect="AspectFit"/>
+                                <Label Text="{Binding Name}"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="3"
+                                       FontSize="Default"
+                                       TextColor="Black"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       Grid.ColumnSpan="3"
+                                       FontSize="Small"/>
+                                <Frame CornerRadius="30"
+                                       Grid.Column="1"
+                                       BorderColor="{StaticResource MainColor}"
+                                       Margin="0,5,0,5"
+                                       Padding="0"
+                                       Grid.Row="2">
+                                    <Label Text="{Binding Count, StringFormat='{0}шт'}"
+                                           BackgroundColor="Transparent"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="Micro"/>
+                                </Frame>
+
+                                <Label Text="{Binding Price, StringFormat='{0}₽'}"
+                                       Grid.Row="2"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium"
+                                       TextColor="Black"
+                                       Grid.Column="2"/>
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <StackLayout Grid.Row="1">
+                <Label FontAttributes="Bold"
+                       TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="{Binding Count, StringFormat='Всего {0} товаров на сумму: '}"/>
+                                <Span Text="{Binding Sum, StringFormat=' {0}₽'}"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Style="{StaticResource SecondaryButton}"
+                        Text="Продолжить"
+                        FontSize="Medium"
+                        Scale="0.5"/>
+
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
