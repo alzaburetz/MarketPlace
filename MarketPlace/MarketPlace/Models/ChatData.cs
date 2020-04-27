@@ -21,5 +21,18 @@ namespace MarketPlace.Models
         public int New { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("surname")]
+        public string Surname { get; set; }
+        [JsonProperty("uid")]
+        public int UID { get; set; }
+    }
+
+    [Serializable]
+    public class Chat
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("chat")]
+        public List<Message> Messages { get; set; }
     }
 }
