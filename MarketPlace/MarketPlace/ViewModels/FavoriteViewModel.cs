@@ -16,6 +16,8 @@ namespace MarketPlace.ViewModels
         public ObservableCollection<Product> FavoriteProducts { get; set; }
         public Command LoadFavorite { get; set; }
         public Command RemoveFromFavorite { get; set; }
+        public Command CountFavorite { get; set; }
+        public int FavoriteCount { get; set; }
         public FavoriteViewModel()
         {
             FavoriteProducts = new ObservableCollection<Product>();
@@ -32,6 +34,7 @@ namespace MarketPlace.ViewModels
                     }
                     IsBusy = false;
                 });
+                CountFavorite.Execute(null);
             });
 
             RemoveFromFavorite = new Command<Product>((product) =>
@@ -41,7 +44,13 @@ namespace MarketPlace.ViewModels
                 {
                     Database.RemoveItem<Product>("Favorite", LiteDB.Query.Where("_id", x => x.AsInt32 == product.ID));
                     MessagingCenter.Send<FavoriteViewModel, Product>(this, "UnsetFavorite", product);
+                    MessagingCenter.Send<Application>(Application.Current, "UpdateFavorite");
                 });
+            });
+
+            CountFavorite = new Command(() =>
+            {
+                FavoriteCount = Database.GetRecordCount<Product>("Favorite");
             });
         }
     }
