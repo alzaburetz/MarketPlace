@@ -9,32 +9,9 @@
              x:Class="MarketPlace.Views.ChatPage">
     <ContentPage.Content>
         <StackLayout Padding="0">
-            <CollectionView>
-                <CollectionView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                        <x:String>dsfgdfgdfg</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
+            <CollectionView ItemsSource="{Binding ChatList}"
+                            SelectionMode="Single"
+                            SelectionChanged="OpenChat">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <views:ChatElementView/>
