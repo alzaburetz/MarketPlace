@@ -5,64 +5,116 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:models="clr-namespace:MarketPlace.Models"
+             xmlns:circle="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:controls="clr-namespace:MarketPlace.Controls"
+             xmlns:converters="clr-namespace:MarketPlace.Converters"
+             Title="{Binding Title}"
              x:Class="MarketPlace.Views.Messages">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TimeStampToTimeConverter x:Key="ConvertTime"/>
+            <converters:MessageStatusConverter x:Key="Status"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Frame CornerRadius="20"
-                   BorderColor="{StaticResource DarkGrey}"
-                   VerticalOptions="FillAndExpand"
-                   Padding="0"
-                   HorizontalOptions="FillAndExpand">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.9*"/>
-                        <RowDefinition Height="0.1*"/>
-                    </Grid.RowDefinitions>
-                    <BoxView BackgroundColor="Red"/>
-                    <CollectionView ItemsSource="{Binding Messages}">
-                        <d:CollectionView.ItemsSource>
-                            <x:Array Type="{x:Type models:Message}">
-                                <models:Message Text="Test"/>
-                                <models:Message Text="Test"/>
-                                <models:Message Text="Test"/>
-                                <models:Message Text="Test"/>
-                                <models:Message Text="Test"/>
-                            </x:Array>
-                        </d:CollectionView.ItemsSource>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Frame>
-                                    <Label d:Text="{Binding Text}"/>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Frame CornerRadius="0"
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.9*"/>
+                    <RowDefinition Height="0.1*"/>
+                </Grid.RowDefinitions>
+                <CollectionView ItemsSource="{Binding Messages}"
+                                    x:Name="Collection"
+                                    ItemsUpdatingScrollMode="KeepLastItemInView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*"/>
+                                        <ColumnDefinition Width="0.7*"/>
+                                        <ColumnDefinition Width="0.15*"/>
+                                        <ColumnDefinition Width="0.1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Grid.Column="3"
+                                           Aspect="AspectFit"
+                                           Source="{Binding WasRead, Converter={StaticResource Status}}"/>
+
+                                    <circle:CircleImage Source="{Binding Image}"
+                                                            Aspect="AspectFill"
+                                               Grid.Column="0"
+                                               Grid.RowSpan="2"/>
+                                    <Label Grid.Row="0"
+                                               FontAttributes="Bold"
+                                               TextColor="Black"
+                                               Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span Text="{Binding Name, StringFormat='{0}'}"/>
+                                                    <Span Text=" "/>
+                                                    <Span Text="{Binding Surname, StringFormat='{0}'}"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="1"
+                                               Grid.RowSpan="2"
+                                               Grid.Column="1"
+                                               Text="{Binding Text}"/>
+                                    <Label Grid.Row="1"
+                                           Grid.Column="2"
+                                           FontSize="Micro"
+                                           Text="{Binding Date, Converter={StaticResource ConvertTime}}"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator Color="{StaticResource MainColor}"
+                                   Scale="0.2"
+                                   IsEnabled="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   IsRunning="{Binding IsBusy}"/>
+                <Frame CornerRadius="0"
                            BorderColor="{StaticResource DarkGrey}"
                            Grid.Row="1"
                            Padding="0"
                            BackgroundColor="White">
-                        <Grid Padding="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.1*"/>
-                                <ColumnDefinition Width="0.8*"/>
-                                <ColumnDefinition Width="0.1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <ImageButton BackgroundColor="Yellow"/>
-                            <Entry Keyboard="Text"
-                                   VerticalOptions="EndAndExpand"
-                                   HorizontalOptions="FillAndExpand"
-                                   Grid.Column="1"/>
-                            <ImageButton Source="sendmessage"
-                                         Grid.Column="2"
-                                         BackgroundColor="Blue"/>
-                        </Grid>
-                    </Frame>
-                </Grid>
-            </Frame>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="7">
+                        <ImageButton Source="attach"
+                                     Aspect="AspectFit"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="FillAndExpand"
+                                     BackgroundColor="Transparent"/>
+                        <controls:EntryInFrame Keyboard="Text"
+                                               BackgroundColor="White"
+                                               BorderColor="{StaticResource DarkGrey}"
+                                               Padding="15"
+                                               CornerRadius="30"
+                                VerticalOptions="Center"
+                                   x:Name="Message"
+                                   HorizontalOptions="FillAndExpand"/>
+                        <ImageButton Source="send_message"
+                                     Aspect="AspectFit"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="FillAndExpand"
+                                     BackgroundColor="Transparent"
+                                         Clicked="ClearChat"
+                                         Command="{Binding SendMessage}"
+                                         CommandParameter="{Binding Path=Text, Source={x:Reference Message}}"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
