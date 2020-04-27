@@ -13,14 +13,14 @@ namespace MarketPlace.ViewModels
     {
         public Command LoadChat { get; set; }
         public ObservableCollection<ChatData> ChatList { get; set; }
-        int UserID;
+        public UserInfo User { get; set; }
         public ChatListViewModel()
         {
             ChatList = new ObservableCollection<ChatData>();
-            LoadChat = new Command(() =>
+            LoadChat = new Command(async () =>
             {
                 IsBusy = true;
-                Task.Run(async () =>
+                await Task.Run(async () =>
                 {
                     ChatList.Clear();
                     var chat_list = await Http.GetRequest<List<ChatData>>("chat?action=list", true);
@@ -34,7 +34,7 @@ namespace MarketPlace.ViewModels
                     IsBusy = false;
                 });
             });
-            MessagingCenter.Subscribe<MainPageViewModel, int>(this, "SetID", (s, id) => UserID = id);
+            MessagingCenter.Subscribe<MainPageViewModel, UserInfo>(this, "SetID", (s, user) => User = user);
         }
     }
 }
