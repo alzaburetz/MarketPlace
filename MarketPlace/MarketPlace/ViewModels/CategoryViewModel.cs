@@ -22,19 +22,22 @@ namespace MarketPlace.ViewModels
         {
             ID = id;
             Products = new ObservableCollection<Product>();
-            Favorite = new Command<Product>((prod) =>
+            Favorite = new Command<Product>(async (prod) =>
             {
                 prod.Favorited = !prod.Favorited;
                 if (prod.Favorited)
-                    Task.Run(() =>
+                    await Task.Run(() =>
                     {
                         Database.WriteItem<Product>("Favorite", prod);
                     });
                 else
-                    Task.Run(() =>
+                    await Task.Run(() =>
                     {
                         Database.RemoveItem<Product>("Favorite", LiteDB.Query.Where("_id", x => x.AsInt32 == prod.ID));
                     });
+
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                MessagingCenter.Send<Application>(Application.Current, "UpdateFavorite");
             });
             Loadproducts = new Command(() =>
              {
