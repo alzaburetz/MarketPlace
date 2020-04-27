@@ -25,6 +25,9 @@ namespace MarketPlace.Views
         {
             base.OnAppearing();
             viewModel.LoadUser.Execute(null);
+            viewModel.CountCart.Execute(null);
+            viewModel.CountFavorite.Execute(null);
+            viewModel.CountMessages.Execute(null);
         }
 
         protected override void OnCurrentPageChanged()
