@@ -10,7 +10,18 @@
             UnselectedTabColor="#666666"
             xmlns:views="clr-namespace:MarketPlace.Views"
             xmlns:badge="clr-namespace:Plugin.Badge.Abstractions;assembly=Plugin.Badge.Abstractions"
+            xmlns:converters="clr-namespace:MarketPlace.Converters"
             x:Class="MarketPlace.Views.MainPage">
+    
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="badge:Badge">
+                <Setter Property="BadgeTextColor" Value="White"/>
+            </Style>
+            <converters:BadgeBackgroundConverter x:Key="BadgeColor"/>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
 
     <TabbedPage.Children>
         <NavigationPage IconImageSource="menu_home">
@@ -18,17 +29,23 @@
                 <views:CatalogPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage IconImageSource="menu_heart">
+        <NavigationPage IconImageSource="menu_heart"
+                        badge:TabBadge.BadgeColor="{Binding FavoriteCount, Converter={StaticResource BadgeColor}}"
+                        badge:TabBadge.BadgeText="{Binding FavoriteCount}">
             <x:Arguments>
                 <views:FavoritePage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage IconImageSource="menu_cart">
+        <NavigationPage IconImageSource="menu_cart"
+                        badge:TabBadge.BadgeColor="{Binding CartCount, Converter={StaticResource BadgeColor}}"
+                        badge:TabBadge.BadgeText="{Binding CartCount}">
             <x:Arguments>
                 <views:CartPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage IconImageSource="menu_chat">
+        <NavigationPage IconImageSource="menu_chat"
+                        badge:TabBadge.BadgeColor="{Binding MessageCount, Converter={StaticResource BadgeColor}}"
+                        badge:TabBadge.BadgeText="{Binding MessageCount}">
             <x:Arguments>
                 <views:ChatPage />
             </x:Arguments>
