@@ -98,5 +98,7 @@ namespace MarketPlace.Models
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        [JsonProperty("avatar_image")]
+        public string Avatar { get; set; }
     }
 }
