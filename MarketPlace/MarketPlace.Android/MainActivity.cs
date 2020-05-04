@@ -10,6 +10,8 @@ using Android.OS;
 using Xamarin;
 using Xamarin.Forms;
 
+using Com.Facetec.Zoom.Sdk;
+
 namespace MarketPlace.Droid
 {
     [Activity(Label = "MarketPlace", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -22,8 +24,8 @@ namespace MarketPlace.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Forms.SetFlags("CarouselView_Experimental");
             Forms.SetFlags("SwipeView_Experimental");
+            Forms.SetFlags("CarouselView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
@@ -35,5 +37,47 @@ namespace MarketPlace.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+            ZoomSDK.Initialize(this, "lE4uZ5mutuGfGlKMfrUUmcWlp79jtLM8OUhW", new ZoomInitializeCallback(this));
+        }
+
+        private class ZoomInitializeCallback : ZoomSDK.InitializeCallback
+        {
+            private MainActivity activity;
+
+            public ZoomInitializeCallback(MainActivity activity)
+            {
+                this.activity = activity;
+            }
+
+            public override void OnCompletion(bool success)
+            {
+                activity.RunOnUiThread(delegate {
+
+                    if (!success)
+                    {
+                        String statusStr = ZoomSDK.GetStatus(activity).ToString();
+                        String alertMessage = "Initialization failed. " + statusStr;
+                        activity.ShowZoomAlert("Warning", alertMessage);
+                    }
+                });
+            }
+        }
+
+        public void ShowZoomAlert(string title, string message)
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle(title);
+            alert.SetMessage(message);
+            alert.SetCancelable(true);
+            alert.SetNeutralButton("OK", (senderAlert, arg) => { });
+            alert.Create().Show();
+        }
     }
+
+
+   
 }
