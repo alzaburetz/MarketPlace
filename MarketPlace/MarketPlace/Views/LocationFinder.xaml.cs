@@ -37,7 +37,7 @@ namespace MarketPlace.Views
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await DisplayAlert("Location", $"{location.Latitude} x {location.Longitude}", "OK");
+                    //await DisplayAlert("Location", $"{location.Latitude} x {location.Longitude}", "OK");
                 });
             }
         }
