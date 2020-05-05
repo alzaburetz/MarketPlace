@@ -10,6 +10,8 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Clicked="LaunchAR"
+                    BackgroundColor="Red"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

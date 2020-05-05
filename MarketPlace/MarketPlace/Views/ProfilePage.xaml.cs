@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using MarketPlace.Services;
+
 namespace MarketPlace.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +17,11 @@ namespace MarketPlace.Views
         public ProfilePage()
         {
             InitializeComponent();
+        }
+
+        protected void LaunchAR(object sender, EventArgs args)
+        {
+            DependencyService.Get<IARLauncher>().LaunchAR();
         }
     }
 }
