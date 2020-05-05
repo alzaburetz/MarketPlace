@@ -11,6 +11,7 @@ using Xamarin;
 using Xamarin.Forms;
 
 using Com.Facetec.Zoom.Sdk;
+using Google.AR.Core;
 
 namespace MarketPlace.Droid
 {
@@ -24,10 +25,12 @@ namespace MarketPlace.Droid
 
             base.OnCreate(savedInstanceState);
 
+
             Forms.SetFlags("SwipeView_Experimental");
             Forms.SetFlags("CarouselView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
